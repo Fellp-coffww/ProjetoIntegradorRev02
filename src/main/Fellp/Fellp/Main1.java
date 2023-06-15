@@ -1,8 +1,6 @@
 import java.util.Scanner;
 
-public class Main {
 
-	public static void main(String[] args) {
 		Scanner ler = new Scanner(System.in);
 		
 		//Variável auxiliar para evitar o problema do nextLine
@@ -72,5 +70,5 @@ public class Main {
 			}
 			
 		ler.close();
-	}
+
 }
