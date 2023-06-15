@@ -5,11 +5,13 @@ public class Sessao {
     
 
 
- private int data = 0;
+ private String data = "";
  
  private Sala sala = new Sala();
 
  private Filme filme = new Filme();
+
+ private String nomeSessao = "";
 
  private int horario = 0;
 
@@ -29,7 +31,7 @@ public Filme getFilme() {
     return filme;
 }
 
-public int getData() {
+public String getData() {
     return data;
 }
 
@@ -37,7 +39,7 @@ public int getHorario() {
     return horario;
 }
 
-public void setData(int data) {
+public void setData(String data) {
     this.data = data;
 }
 
@@ -45,8 +47,15 @@ public void setHorario(int horario) {
     this.horario = horario;
 }
 
+    public String getNomeSessao() {
+        return nomeSessao;
+    }
 
-public String toString(){
+    public void setNomeSessao(String nomeSessao) {
+        this.nomeSessao = nomeSessao;
+    }
+
+    public String toString(){
 
 return "Filme: " +  filme.getNomeDoFilme()+ "\n" + 
 "Sala: " + sala.getNomeDaSala() + "\n" + 

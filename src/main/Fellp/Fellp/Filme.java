@@ -1,7 +1,11 @@
 package Fellp;
 
+import java.util.ArrayList;
+
 public class Filme {
-    
+
+
+private ArrayList<Sessao> listaSessao = new ArrayList<>();
 private String nomeDoFilme = "";
 
 private int anoDeLancamento = 0;
@@ -15,7 +19,6 @@ private String sinopse = "";
 private double duracao = 0;
 
 private String atorPrincipal = "";
-
 
 
 public String getNomeDoFilme() {
@@ -86,7 +89,29 @@ public void setAtorPrincipal(String atorPrincipal) {
 }
 
 
+public void addListaSessao(Sessao sessao){
+    listaSessao.add(sessao);
+}
+
+    public ArrayList<Sessao> getListaSessao() {
+        return listaSessao;
+    }
 
 
+    public Sessao getListaSessaobyIdx(int idx) {
+        return listaSessao.get(idx);
+    }
+
+
+    public String retornaSessoes(){
+
+    String temp = "";
+
+    for (int n = 0 ; n < listaSessao.size(); n++){
+        temp = temp + listaSessao.get(n).toString();
+
+    }
+    return temp;
+    }
 
 }

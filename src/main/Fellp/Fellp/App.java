@@ -1,19 +1,19 @@
 package Fellp;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.io.*;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
+import java.util.Properties;
+import javax.mail.Address;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 public class App {
     public static void main(String[] args) throws Exception {
 
-    Cadastro cadastro = new Cadastro();
-    cadastro.atualizaLista();
-        System.out.println(cadastro.retornaFilmes());
-    }
-
-
-  }
+        Cadastro cadastro = new Cadastro();
+        cadastro.atualizaListaFilmes();
+        cadastro.atualizaListaSalas();
+        cadastro.addSessao();
+    }}

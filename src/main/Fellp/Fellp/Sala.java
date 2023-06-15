@@ -4,7 +4,7 @@ public class Sala {
 
     private String nomeDaSala = "";
 
-    private int quantidadeDeAssentos = 0; 
+    private int quantidadeDeAssentos = 0;
 
     private int linhas = 0; 
     
@@ -59,8 +59,8 @@ public class Sala {
 
     public String toString(){
 
-        return "Sala: "+ this.nomeDaSala + 
-        "Quantidade de assentos: " + this.quantidadeDeAssentos; 
+        return this.nomeDaSala +"\n"+
+         this.quantidadeDeAssentos;
     }
 
 
