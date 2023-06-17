@@ -2,13 +2,12 @@ package Fellp;
 
 
 public class Sessao {
-    
-
 
  private String data = "";
  
  private Sala sala = new Sala();
 
+ private int indexSala = 0;
  private Filme filme = new Filme();
 
  private String nomeSessao = "";
@@ -47,20 +46,31 @@ public void setHorario(String horario) {
     this.horario = horario;
 }
 
-    public String getNomeSessao() {
+public String getNomeSessao() {
         return nomeSessao;
     }
 
-    public void setNomeSessao(String nomeSessao) {
+public void setNomeSessao(String nomeSessao) {
         this.nomeSessao = nomeSessao;
     }
 
-    public String toString(){
+public int getIndexSala() {
+        return indexSala;
+    }
 
-return "Filme: " +  filme.getNomeDoFilme()+ "\n" + 
+public void setIndexSala(int indexSala) {
+        this.indexSala = indexSala;
+    }
+
+
+public String toString(){
+
+return "Filme: " +  filme.getNomeDoFilme()+ "     " +
 "Sala: " + sala.getNomeDaSala() + "\n" +
-"Data: " + this.data + "\n" +
-"Horário: " + this.horario; 
+"Data: " + this.data + "        " +
+"Horário: " + this.horario + "h";
+
+
 
 
 }

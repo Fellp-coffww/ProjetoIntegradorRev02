@@ -12,6 +12,7 @@ public class Cadastro {
     Scanner sc = new Scanner(System.in);
     ArrayList<Filme> listaFilme = new ArrayList<>();
     ArrayList<Sala> listaSala = new ArrayList<>();
+    ArrayList<Ingresso> listaIngresso = new ArrayList<>();
     Sala sala = new Sala();
 
     InputDados ip = new InputDados();
@@ -87,7 +88,10 @@ public class Cadastro {
             String nome = lt.next();
             sessao.setNomeSessao(nome);
             System.out.println("\n" + toStringBonitinhoSala());
-            sessao.setSala(listaSala.get(ip.isInteger("Digite a sala pelo índice que você deseja adicionar : ")));
+            int sala = ip.isInteger("Digite a sala pelo índice que você deseja adicionar : ");
+            sessao.setSala(listaSala.get(sala));
+            sessao.setIndexSala(sala);
+            System.out.print("Digite o horário do filme a ser exibido: ");
             sessao.setHorario(lt.next());
             System.out.print("Infome o dia : ");
             sessao.setData(lt.next());
@@ -196,7 +200,7 @@ public class Cadastro {
             System.err.println(e);
         }
     }
-
+    
     public void vendaIngresso() {
         Ingresso ingresso = new Ingresso();
         System.out.println("Bem vindo ao Cineplex! Obrigado pela sua escolha! \nEscolha o filme que deseja assistir: \n");
@@ -210,7 +214,9 @@ public class Cadastro {
         ingresso.setSessao(listaFilme.get(idx).getListaSessaobyIdx(idx2));
         System.out.println("\n"+"------Seleção de poltrona------"+"\n");
         System.out.println(listaFilme.get(idx).getListaSessaobyIdx(idx2).getSala().salaTamanho());
-        ingresso.setPoltrona(ip.validateSizeNumber(2,"Escolha a sua poltrona: "));
+        int poltronatemp = ip.validateSizeNumber(2,"Escolha a sua poltrona: ");
+        ingresso.setPoltrona(poltronatemp);
+        listaFilme.get(idx).getListaSessaobyIdx(idx2).getSala().OcupaLugar(poltronatemp/10, poltronatemp%10);
         System.out.println("\n"+"------Seleção de ingresso------"+"\n");
         System.out.print("Deseja a opção de meia entrada(S/N)? ");
         if(sc.next().toLowerCase().equals("s")){
@@ -225,10 +231,8 @@ public class Cadastro {
         }
         System.out.print("Cadastre seu email para receber ofertas e promoções! ");
         ingresso.setMail(sc.next());
-
-
-
-
+        listaIngresso.add(ingresso);
+        System.out.println("\n---------Venda realizada com sucesso!---------\n");
     }
 
     public String retornaSessoesToTxt(boolean idx) {
@@ -269,6 +273,34 @@ public class Cadastro {
 
         return listaSala.get(idx);
     }
+
+    public String retornaIngressobyIdx(int idx){
+        return  listaIngresso.get(idx).toString();
+    }
+    public String retornaIngressosVendidos(){
+        String temp = "";
+        for (int n = 0; n< listaIngresso.size(); n++){
+            temp = temp + n + " - "+ listaIngresso.get(n).getFilme().getNomeDoFilme();
+        }
+        return temp;
+    }
+
+
+    public String fincanceiro(){
+
+        String temp = "Ingressos vendidos: " + listaIngresso.size()+"\n";
+        double faturamento = 0;
+        for (int x = 0; x < listaIngresso.size();x++){
+            faturamento = faturamento + listaIngresso.get(x).getPreco();
+        }
+
+        temp = temp + "Faturamento: " + faturamento;
+
+
+
+        return  temp;
+    }
+
 
 
 }

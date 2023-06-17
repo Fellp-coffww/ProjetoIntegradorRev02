@@ -66,8 +66,11 @@ public class Sala {
 
     public String salaTamanho(){
 
-        setLugares(this.linhas, this.colunas);
         String temp = "\n"+"   ";
+        if (lugares.length == 0 ) {
+            setLugares(this.linhas, this.colunas);
+        }
+
         for( int x  = 0; x <= lugares.length;x++) {
             temp = temp + Integer.toString (x+1) + "  ";
         }
@@ -83,7 +86,7 @@ public class Sala {
                 }
                 else {
 
-                    temp = temp + " 1 ";
+                    temp = temp + " X ";
                 }
             }
             temp = temp + "\n";

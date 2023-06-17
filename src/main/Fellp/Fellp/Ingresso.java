@@ -65,8 +65,16 @@ public class Ingresso {
     public String toString(){
 
 
-        String temp = sessao.toString() + "\n " +
-                "" ;
+        String temp = "\n"+ sessao.toString() + "\n" +
+                "Poltrona: " + this.poltrona + "         " +
+                "Preço: " + this.preco + "R$" + "\n";
+        if (type == true){
+
+            temp = temp + "Tipo de ingresso: Meia entrada  \n";
+        }
+        else {
+            temp = temp + "Tipo de ingresso: Entrada inteira \n";
+        }
 
         return temp;
     }
