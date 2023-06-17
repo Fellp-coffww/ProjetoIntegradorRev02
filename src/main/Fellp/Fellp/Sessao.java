@@ -13,7 +13,7 @@ public class Sessao {
 
  private String nomeSessao = "";
 
- private int horario = 0;
+ private String horario = "";
 
 public void setSala(Sala sala) {
     this.sala = sala;
@@ -35,7 +35,7 @@ public String getData() {
     return data;
 }
 
-public int getHorario() {
+public String getHorario() {
     return horario;
 }
 
@@ -43,7 +43,7 @@ public void setData(String data) {
     this.data = data;
 }
 
-public void setHorario(int horario) {
+public void setHorario(String horario) {
     this.horario = horario;
 }
 
@@ -58,7 +58,8 @@ public void setHorario(int horario) {
     public String toString(){
 
 return "Filme: " +  filme.getNomeDoFilme()+ "\n" + 
-"Sala: " + sala.getNomeDaSala() + "\n" + 
+"Sala: " + sala.getNomeDaSala() + "\n" +
+"Data: " + this.data + "\n" +
 "Horário: " + this.horario; 
 
 

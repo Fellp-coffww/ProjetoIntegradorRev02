@@ -10,17 +10,16 @@ public class Sala {
     
     private int colunas = 0; 
 
-    private boolean[][] lugares = new boolean[linhas][colunas];
-    
+    private boolean[][] lugares = new boolean[this.linhas][this.colunas];
+
+
+    public void setLugares(int x, int y) {
+        this.lugares = new boolean[x][y];
+    }
+
     public void OcupaLugar(int linha, int coluna){
 
             this.lugares[linha][coluna] = true;
-
-    }
-
-    public void CalculaAssentos(){
-
-        this.quantidadeDeAssentos = this.linhas * this.colunas;
 
     }
 
@@ -60,7 +59,36 @@ public class Sala {
     public String toString(){
 
         return this.nomeDaSala +"\n"+
-         this.quantidadeDeAssentos;
+                this.linhas + "\n"+
+                this.colunas + "\n" +
+         this.quantidadeDeAssentos ;
+    }
+
+    public String salaTamanho(){
+
+        setLugares(this.linhas, this.colunas);
+        String temp = "\n"+"   ";
+        for( int x  = 0; x <= lugares.length;x++) {
+            temp = temp + Integer.toString (x+1) + "  ";
+        }
+
+        temp = temp + "\n";
+
+        for( int x  = 0; x < lugares.length;x++) {
+
+            temp = temp + Integer.toString(x+1) + " ";
+            for(int y = 0; y<lugares[x].length; y++){
+                if (lugares[x][y] == false){
+                    temp = temp + " 0 ";
+                }
+                else {
+
+                    temp = temp + " 1 ";
+                }
+            }
+            temp = temp + "\n";
+        }
+    return temp;
     }
 
 

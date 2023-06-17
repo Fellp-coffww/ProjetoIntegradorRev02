@@ -1,4 +1,4 @@
-3
+4
 Vingadores
 1978
 L
@@ -14,3 +14,8 @@ Amelie Poulin
 P12
 Drama
 Muito fofo
+Sexta feira 13
+2002
++18
+Aventura
+Bem assustador

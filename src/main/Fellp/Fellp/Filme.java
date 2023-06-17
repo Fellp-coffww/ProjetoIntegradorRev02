@@ -80,15 +80,6 @@ public String toString(){
 
 }
 
-public String getAtorPrincipal() {
-    return atorPrincipal;
-}
-
-public void setAtorPrincipal(String atorPrincipal) {
-    this.atorPrincipal = atorPrincipal;
-}
-
-
 public void addListaSessao(Sessao sessao){
     listaSessao.add(sessao);
 }
@@ -108,7 +99,7 @@ public void addListaSessao(Sessao sessao){
     String temp = "";
 
     for (int n = 0 ; n < listaSessao.size(); n++){
-        temp = temp + listaSessao.get(n).toString();
+        temp = temp + n+" - " + listaSessao.get(n).toString();
 
     }
     return temp;

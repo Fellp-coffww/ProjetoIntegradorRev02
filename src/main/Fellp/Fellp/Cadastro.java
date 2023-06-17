@@ -13,15 +13,21 @@ public class Cadastro {
     ArrayList<Filme> listaFilme = new ArrayList<>();
     ArrayList<Sala> listaSala = new ArrayList<>();
     Sala sala = new Sala();
+
+    InputDados ip = new InputDados();
+
     public void addFilme() {
 
+        String temp = "";
         Filme filme = new Filme();
 
         System.out.print("Nome do filme: ");
         filme.setNomeDoFilme(sc.nextLine());
 
-        System.out.print("Ano de lançamento: ");
-        filme.setAnoDeLancamento(Integer.parseInt(sc.nextLine()));
+
+        filme.setAnoDeLancamento(ip.isInteger("Ano de lançamento: "));
+
+
 
         System.out.print("Classificação: ");
         filme.setClassificacao(sc.nextLine());
@@ -33,6 +39,8 @@ public class Cadastro {
         filme.setSinopse(sc.nextLine());
 
         listaFilme.add(filme);
+
+        System.out.println("Cadastro realizado com sucesso! \n");
     }
 
 
@@ -43,13 +51,15 @@ public class Cadastro {
         System.out.print("Nome da sala: ");
         sala.setNomeDaSala(sc.nextLine());
 
-        System.out.print("Números de colunas: ");
-        sala.setColunas(Integer.parseInt(sc.nextLine()));
+        sala.setColunas(ip.isInteger("Números de colunas: "));
 
-        System.out.print("Números de linhas: ");
-        sala.setLinhas(Integer.parseInt(sc.nextLine()));
+        sala.setLinhas(ip.isInteger("Números de linhas: "));
+
+        sala.setQuantidadeDeAssentos(sala.getColunas()* sala.getLinhas());
 
         listaSala.add(sala);
+
+        System.out.println("Cadastro realizado com sucesso! \n");
     }
 
 
@@ -68,8 +78,7 @@ public class Cadastro {
 
     public void addSessao() {
         Scanner lt = new Scanner(System.in);
-        System.out.print("Infome o numero de sessoes que deseja cadastrar: ");
-        int N = lt.nextInt();
+        int N = ip.isInteger("Infome o numero de sessões que deseja cadastrar: ");
 
         for (int i = 0; i < N; i++) {
             Sessao sessao = new Sessao();
@@ -78,17 +87,15 @@ public class Cadastro {
             String nome = lt.next();
             sessao.setNomeSessao(nome);
             System.out.println("\n" + toStringBonitinhoSala());
-            System.out.print("Digite a sala pelo índice que você deseja adicionar : ");
-            sessao.setSala(listaSala.get(lt.nextInt()));
-            System.out.print("Infome o horario: ");
-            sessao.setHorario(lt.nextInt());
+            sessao.setSala(listaSala.get(ip.isInteger("Digite a sala pelo índice que você deseja adicionar : ")));
+            sessao.setHorario(lt.next());
             System.out.print("Infome o dia : ");
             sessao.setData(lt.next());
             System.out.println("\n" + toStringBonitinhoFilme());
-            System.out.print("\n" +"Digite o filme pelo índice que você deseja adicionar : ");
-            int idx = (lt.nextInt());
+            int idx = (ip.isInteger( "Digite o filme pelo índice que você deseja adicionar : "));
             sessao.setFilme(listaFilme.get(idx));
             listaFilme.get(idx).addListaSessao(sessao);
+            System.out.println("Cadastro realizado com sucesso!\n");
         }
     }
 
@@ -180,6 +187,8 @@ public class Cadastro {
             for (int i = 0; i < size; i++) {
                 Sala sala = new Sala();
                 sala.setNomeDaSala(bufferedReader.readLine());
+                sala.setLinhas(Integer.parseInt(bufferedReader.readLine()));
+                sala.setColunas(Integer.parseInt(bufferedReader.readLine()));
                 sala.setQuantidadeDeAssentos(Integer.parseInt(bufferedReader.readLine()));
                 listaSala.add(sala);
             }
@@ -189,13 +198,37 @@ public class Cadastro {
     }
 
     public void vendaIngresso() {
-        System.out.println("Bem vindo ao Cineplex! Obrigado pela sua escolha! \nEscolha o filme que deseja assistir: ");
-        System.out.println(retornaFilmes(false));
-        System.out.println("Escolha o filme pelo índice correspondente: ");
-        Scanner sc = new Scanner(System.in);
-        int idx = sc.nextInt();
-        System.out.print("Escolha a sessão correspondente: ");
-        System.out.println(listaFilme.get(idx).retornaSessoes());
+        Ingresso ingresso = new Ingresso();
+        System.out.println("Bem vindo ao Cineplex! Obrigado pela sua escolha! \nEscolha o filme que deseja assistir: \n");
+        System.out.println("\n"+"------Seleção de filme------"+"\n");
+        System.out.println(toStringBonitinhoFilme());
+        int idx = ip.isInteger("Escolha o filme pelo índice correspondente: ");
+        ingresso.setFilme(listaFilme.get(idx));
+        System.out.println("\n"+"------Seleção de sessão------"+"\n");
+        System.out.println("\n"+listaFilme.get(idx).retornaSessoes() + "\n");
+        int idx2 = ip.isInteger("Escolha a sessão do seu agrado: ");
+        ingresso.setSessao(listaFilme.get(idx).getListaSessaobyIdx(idx2));
+        System.out.println("\n"+"------Seleção de poltrona------"+"\n");
+        System.out.println(listaFilme.get(idx).getListaSessaobyIdx(idx2).getSala().salaTamanho());
+        ingresso.setPoltrona(ip.validateSizeNumber(2,"Escolha a sua poltrona: "));
+        System.out.println("\n"+"------Seleção de ingresso------"+"\n");
+        System.out.print("Deseja a opção de meia entrada(S/N)? ");
+        if(sc.next().toLowerCase().equals("s")){
+            ingresso.setType(true);
+            ingresso.setPreco(25.00);
+            System.out.println("\n"+"------Meia poltrona selecionada!------"+"\n");
+        }
+        else{
+            ingresso.setType(false);
+            ingresso.setPreco(50.00);
+            System.out.println("\n"+"------Inteira selecionada!------"+"\n");
+        }
+        System.out.print("Cadastre seu email para receber ofertas e promoções! ");
+        ingresso.setMail(sc.next());
+
+
+
+
     }
 
     public String retornaSessoesToTxt(boolean idx) {
@@ -230,6 +263,11 @@ public class Cadastro {
                     "\n"+ "Gênero: " + listaFilme.get(n).getGenero() + "\n"+"\n";
         }
         return temp;
+    }
+
+    public  Sala getSalabyIdx(int idx){
+
+        return listaSala.get(idx);
     }
 
 
