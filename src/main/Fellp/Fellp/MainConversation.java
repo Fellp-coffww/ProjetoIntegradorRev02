@@ -36,7 +36,7 @@ public class MainConversation {
                     cadastro.addSessao();
                     break;
                 case 4:
-                    cadastro.fincanceiro();
+                    System.out.println(cadastro.fincanceiro());
             }
           number = inputDados.isInteger(options + "\n");
 

@@ -1,4 +1,4 @@
-5
+4
 Vingadores
 1978
 L
@@ -19,8 +19,3 @@ Sexta feira 13
 +18
 Aventura
 Bem assustador
-As aventuras de Pi
-2015
-Livre
-Aventura e ação
-Bem bacana

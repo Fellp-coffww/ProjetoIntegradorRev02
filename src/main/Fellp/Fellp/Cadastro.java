@@ -85,14 +85,14 @@ public class Cadastro {
             Sessao sessao = new Sessao();
             System.out.println("SESSAO " + (i + 1));
             System.out.print("Nome da sessao : ");
-            String nome = lt.next();
+            String nome = lt.nextLine();
             sessao.setNomeSessao(nome);
             System.out.println("\n" + toStringBonitinhoSala());
             int sala = ip.isInteger("Digite a sala pelo índice que você deseja adicionar : ");
             sessao.setSala(listaSala.get(sala));
             sessao.setIndexSala(sala);
             System.out.print("Digite o horário do filme a ser exibido: ");
-            sessao.setHorario(lt.next());
+            sessao.setHorario(lt.nextLine());
             System.out.print("Infome o dia : ");
             sessao.setData(lt.next());
             System.out.println("\n" + toStringBonitinhoFilme());
