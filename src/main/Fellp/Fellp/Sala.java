@@ -17,6 +17,11 @@ public class Sala {
         this.lugares = new boolean[x][y];
     }
 
+
+    public boolean taOcupado(int x, int y){
+         return  this.lugares[x][y];
+    }
+
     public void OcupaLugar(int linha, int coluna){
 
             this.lugares[linha][coluna] = true;

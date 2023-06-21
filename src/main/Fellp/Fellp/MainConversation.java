@@ -82,7 +82,6 @@ public class MainConversation {
 
     public void Maininterface(){
 
-
         System.out.println("Bem vindo ao sistema do CineABC! ");
         String option =
         "\n1 - Administrador;\n" +
@@ -95,20 +94,15 @@ public class MainConversation {
         while (number != 3){
 
             switch (number){
-
                 case 1:
                     interfaceCinemaAdmin();
                     break;
                 case 2:
                     interfaceCinemaClient();
                     break;
-
-
             }
-
             number = inputDados.isInteger(option);
         }
-
     }
 
     public void setCadastro(Cadastro cadastro) {

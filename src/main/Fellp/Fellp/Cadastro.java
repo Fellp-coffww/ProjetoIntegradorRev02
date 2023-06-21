@@ -19,16 +19,12 @@ public class Cadastro {
 
     public void addFilme() {
 
-        String temp = "";
         Filme filme = new Filme();
 
         System.out.print("Nome do filme: ");
         filme.setNomeDoFilme(sc.nextLine());
 
-
         filme.setAnoDeLancamento(ip.isInteger("Ano de lançamento: "));
-
-
 
         System.out.print("Classificação: ");
         filme.setClassificacao(sc.nextLine());
@@ -62,20 +58,6 @@ public class Cadastro {
 
         System.out.println("Cadastro realizado com sucesso! \n");
     }
-
-
-    public void addSala(Sala sala) {
-
-        listaSala.add(sala);
-
-    }
-
-    public void addFilme(Filme filme) {
-
-        listaFilme.add(filme);
-
-    }
-
 
     public void addSessao() {
         Scanner lt = new Scanner(System.in);
@@ -215,8 +197,12 @@ public class Cadastro {
         System.out.println("\n"+"------Seleção de poltrona------"+"\n");
         System.out.println(listaFilme.get(idx).getListaSessaobyIdx(idx2).getSala().salaTamanho());
         int poltronatemp = ip.validateSizeNumber(2,"Escolha a sua poltrona: ");
+        while (listaFilme.get(idx).getListaSessaobyIdx(idx2).getSala().taOcupado((poltronatemp/10)-1, (poltronatemp%10)-1) == true){
+            System.out.println("Lugar ocupado, escolha outro!");
+            poltronatemp = ip.validateSizeNumber(2,"Escolha a sua poltrona: ");
+        }
         ingresso.setPoltrona(poltronatemp);
-        listaFilme.get(idx).getListaSessaobyIdx(idx2).getSala().OcupaLugar(poltronatemp/10, poltronatemp%10);
+        listaFilme.get(idx).getListaSessaobyIdx(idx2).getSala().OcupaLugar((poltronatemp/10)-1, (poltronatemp%10)-1);
         System.out.println("\n"+"------Seleção de ingresso------"+"\n");
         System.out.print("Deseja a opção de meia entrada(S/N)? ");
         if(sc.next().toLowerCase().equals("s")){
@@ -232,7 +218,7 @@ public class Cadastro {
         System.out.print("Cadastre seu email para receber ofertas e promoções! ");
         ingresso.setMail(sc.next());
         listaIngresso.add(ingresso);
-        System.out.println("\n---------Venda realizada com sucesso!---------\n");
+        System.out.println("\n---------Compra realizada com sucesso!---------\n");
     }
 
     public String retornaSessoesToTxt(boolean idx) {
@@ -287,20 +273,12 @@ public class Cadastro {
 
 
     public String fincanceiro(){
-
         String temp = "Ingressos vendidos: " + listaIngresso.size()+"\n";
         double faturamento = 0;
         for (int x = 0; x < listaIngresso.size();x++){
             faturamento = faturamento + listaIngresso.get(x).getPreco();
         }
-
         temp = temp + "Faturamento: " + faturamento;
-
-
-
         return  temp;
     }
-
-
-
 }

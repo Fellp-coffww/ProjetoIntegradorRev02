@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Filme {
 
 
+
 private ArrayList<Sessao> listaSessao = new ArrayList<>();
 private String nomeDoFilme = "";
 

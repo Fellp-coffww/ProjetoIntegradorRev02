@@ -22,6 +22,8 @@ public class InputDados {
         }
     }
 
+
+
     public Integer isInteger(String string){
         System.out.print(string);
         Scanner sc = new Scanner(System.in);
@@ -49,7 +51,6 @@ public class InputDados {
             temp = sc.nextLine();
         }
         return Double.parseDouble(temp);
-
     }
 
    public boolean sizeIsTrue(int number, int size){
@@ -67,6 +68,19 @@ public class InputDados {
         }
     }
 
+    public boolean listisTrue(int number, int size){
+        int copy = 0;
+        while (number!=0){
+            number = number/10;
+            copy++;
+        }
+        if (copy == size){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
     public int validateSizeNumber(int size, String message){
 
         int number = isInteger(message);
@@ -76,6 +90,38 @@ public class InputDados {
         }
         return number;
     }
+    public int validateSizeNumber(int sizea, int sizeb, String message){
+
+        int number = isInteger(message);
+        while (sizeIsTrue(number,sizea) == false){
+            System.out.println("Digite novamente, indice insuficiente! ");
+            number = isInteger("");
+        }
+        return number;
+    }
+    public boolean listIsValid(int listSize, int position){
+        if (position<= listSize){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+
+    public Integer isInteger(String string, int position, int sizeList){
+        System.out.print(string);
+        Scanner sc = new Scanner(System.in);
+        String temp = "";
+        temp = sc.nextLine();
+        while (ValidaInteger(temp) == false){
+            System.out.println("Digite novamente, formato inválido!  \n");
+            System.out.print(string);
+            temp = sc.nextLine();
+        }
+        return Integer.parseInt(temp);
+    }
+
 
 
 }
